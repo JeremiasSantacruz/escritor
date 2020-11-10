@@ -8,7 +8,7 @@ const port = process.env.PORT || 8080
 const app = express()
 app.use(bodyParser.json());
 
-/*
+
 const connection = mysql.createConnection({
     host: process.env.DB_HOST || '',
     username: process.env.DB_USER || '',
@@ -18,7 +18,7 @@ const connection = mysql.createConnection({
 connection.connect(err => {
     if(err) throw err
     console.log('Database server running.')
-}) */
+})
 
 app.use(express.static(__dirname + "/dist/"))
 

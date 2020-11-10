@@ -1,8 +1,8 @@
 <template>
   <v-app>
     <v-container>
-      <v-layout justify-space-around column>
-        <v-card hover>
+      <v-layout justify-space-around  column>
+        <v-card hover >
           <v-container>
             <v-card-title>Login</v-card-title>
             <v-form ref="form" lazy-validation v-model="valid">
@@ -31,6 +31,7 @@
             </v-form>
           </v-container>
         </v-card>
+        
         <div>
             <br>
           Need an Account? Register

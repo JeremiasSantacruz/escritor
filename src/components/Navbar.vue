@@ -1,9 +1,8 @@
 <template>
       <v-app-bar
-        color="deep-purple accent-4"
+        color="teal darken-2"
         dense
         elevate-on-scroll
-        dark
         app
       >
         <v-app-bar-nav-icon></v-app-bar-nav-icon>

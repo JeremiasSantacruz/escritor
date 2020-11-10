@@ -30,7 +30,7 @@ export default {
   name: "Home",
   data: () => ({
     books: [
-      { titule: "Madascar", author: "Madrid", desc: "quien sabe", price: 8.0 },
+      { titule: "Madascar", author: "Madrid", desc: "quien sabe", price: 8.90 },
       { titule: "Madascar3", author: "Madrid", desc: "quien sabe", price: 8.0 },
       { titule: "Madascar2", author: "Madrid", desc: "quien sabe", price: 8.0 },
       { titule: "Madascar", author: "Madrid", desc: "quien sabe", price: 8.0 },
@@ -47,7 +47,7 @@ export default {
       { titule: "Madascar", author: "Madrid", desc: "quien sabe", price: 8.0 },
       { titule: "Madascar3", author: "Madrid", desc: "quien sabe", price: 8.0 },
       { titule: "Madascar2", author: "Madrid", desc: "quien sabe", price: 8.0 },
-      { titule: "Madascar", author: "Madrid", desc: "quien sabe", price: 8.0 },
+      { titule: "Madascar", author: "Madrid", desc: "quien sabe", price: 8.05 },
       { titule: "Madascar3", author: "Madrid", desc: "quien sabe", price: 8.0 },
       { titule: "Madascar2", author: "Madrid", desc: "quien sabe", price: 8.0 },
     ],
