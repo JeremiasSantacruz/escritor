@@ -6,5 +6,8 @@ export default {
     },
     ping (hola){
         return api().post('/ping', hola)
+    },
+    login (credentials){
+        return api().post('/login', credentials)
     }
 }

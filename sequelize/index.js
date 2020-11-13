@@ -1,19 +1,12 @@
 const Sequelize = require('sequelize')
 const config = require('../env')
 
-const sequelize = new Sequelize('sqlite::memory:')
-/*
+// const sequelize = new Sequelize('sqlite::memory:')
+
 const sequelize = new Sequelize (
-    '',
-    config.user,
-    config.pass,
-    {
-        dialecct: 'mysql',
-        host: config.host,
-        schema: config.schema
-    }
+    config.db.URL
 )
-*/
+
 
 const modelDefiners = [
     require('./models/User.model')
@@ -28,7 +21,7 @@ for(const modelDefiner of modelDefiners) {
 // applyExtraSetup(sequelize);
 
 //testing
-sequelize.sync({ force: true })
+sequelize.sync()
 
 // We export the sequelize connection instance to be used around our app.
 module.exports = sequelize;

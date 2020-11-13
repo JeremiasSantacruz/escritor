@@ -42,6 +42,7 @@
 </template>
 
 <script>
+import AuthServices from '../services/AuthService'
 export default {
   data: () => ({
     email: "",
@@ -61,7 +62,13 @@ export default {
   methods: {
     validateLogin() {
       this.$refs.form.validate()
-    },
+      if(this.valid){
+        AuthServices.login({
+          email: this.email,
+          password: this.password,
+        })
+      }
+      },
   },
 };
 </script>
