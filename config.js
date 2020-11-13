@@ -5,3 +5,4 @@ user: process.env.DB_USER || '',
 pass: process.env.DB_PASS || '',
 schema: process.env.DB_SCHEMA || '',
 }
+module.exports = config

@@ -1,13 +1,14 @@
 const express = require('express')
 const mysql = require('mysql')
 const bodyParser = require('body-parser')
+const morgan = require('morgan')
 
 require('dotenv').config()
 const port = process.env.PORT || 8080
 
 const app = express()
 app.use(bodyParser.json());
-
+app.use(morgan('combined'))
 /*
 const connection = mysql.createConnection({
     host: process.env.DB_HOST || '',
@@ -23,22 +24,12 @@ connection.connect(err => {
 
 app.use(express.static(__dirname + "/dist/"))
 
-const {models} = require('./sequelize')
+// const {models} = require('./sequelize')
+require('./express/routes')(app)
 
-async function create(req, res) {
-	if (req.body.id) {
-		res.status(400).send(`Bad request: ID should not be provided, since it is determined automatically by the database.`)
-	} else {
-		await models.User.create(req.body);
-		res.status(201).end();
-	}
-};
 
-app.post("/user", 
-    create)
-
-app.get(/.*/, function (req,res){
-        res.sendFile(__dirname + "/dist/index.html")
-})
+//app.get(/.*/, function (req,res){
+//        res.sendFile(__dirname + "/dist/index.html")
+//})
 
 app.listen(port)

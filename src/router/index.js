@@ -32,6 +32,11 @@ const routes = [
     path: '/books/add',
     name: 'bookas',
     component: () => import('@/views/BookRegister.vue')
+  },
+  {
+    path: '/read',
+    name: 'read',
+    component: () => import('@/views/BooksRead.vue')
   }
 ]
 

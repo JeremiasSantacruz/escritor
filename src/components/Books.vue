@@ -8,7 +8,7 @@
     <v-card-subtitle class="white--text">{{ author }}</v-card-subtitle>
     </v-img>
     <v-card-actions>
-      <v-btn color="orange lighten-2" text> Description </v-btn>
+      <v-btn color="orange lighten-2" to='/read'> Description </v-btn>
       <v-spacer></v-spacer>
 
       <v-btn icon @click="show = !show">

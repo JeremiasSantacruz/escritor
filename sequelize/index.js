@@ -27,7 +27,6 @@ for(const modelDefiner of modelDefiners) {
 // We execute any extra setup after the models are defined, such as adding associations.
 // applyExtraSetup(sequelize);
 
-
 //testing
 sequelize.sync({ force: true })
 
