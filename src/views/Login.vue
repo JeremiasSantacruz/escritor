@@ -25,8 +25,7 @@
               ></v-text-field>
               <v-layout justify-space-around>
                 <v-btn @click="validateLogin" :disabled="!valid" align-center
-                  >Login</v-btn
-                >
+                  >Login</v-btn>
               </v-layout>
             </v-form>
           </v-container>
@@ -61,7 +60,7 @@ export default {
   },
   methods: {
     validateLogin() {
-      this.$refs.form.validate();
+      this.$refs.form.validate()
     },
   },
 };

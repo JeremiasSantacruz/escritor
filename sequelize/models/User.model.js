@@ -13,7 +13,7 @@ module.exports = (sequelize) => {
             allowNull: false,
             type: Sequelize.STRING,
             /*validate: {
-                is: /^((?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,32})$/
+                is: ^((?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,32})$
             }*/
         }
     })

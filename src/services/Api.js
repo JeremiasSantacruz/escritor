@@ -1,8 +1,8 @@
 import axios from 'axios'
-import { config } from '../../config'
+//import { config } from '../../env'
 
 export default  () => {
     return axios.create({
-        baseURL: config.BASE_URL || 'localhost:8080'
+        baseURL: process.env.BASE_URL || 'localhost:8080'
     })
 }

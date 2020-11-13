@@ -37,7 +37,12 @@ const routes = [
     path: '/read',
     name: 'read',
     component: () => import('@/views/BooksRead.vue')
-  }
+  },
+  {
+    path: '/pingo',
+    name: 'ping',
+    component: () => import('@/views/Ping.vue')
+  },
 ]
 
 const router = new VueRouter({

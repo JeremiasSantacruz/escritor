@@ -5,6 +5,7 @@ const morgan = require('morgan')
 
 require('dotenv').config()
 const port = process.env.PORT || 8080
+console.log(port)
 
 const app = express()
 app.use(bodyParser.json());
@@ -22,14 +23,13 @@ connection.connect(err => {
     console.log('Database server running.')
 })
 */
+require('./express/routes')(app)
 
 app.use(express.static(__dirname + "/dist/"))
 
-require('./express/routes')(app)
 
-
-//app.get(/.*/, function (req,res){
-//        res.sendFile(__dirname + "/dist/index.html")
-//})
+app.get(/.*/, function (req,res){
+       res.sendFile(__dirname + "/dist/index.html")
+})
 
 app.listen(port)

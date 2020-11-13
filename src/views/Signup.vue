@@ -32,8 +32,9 @@
                   type="password"
                   required
                 ></v-text-field>
-                <v-layout justify-space-around>
+                <v-layout justify-space-around row>
                   <v-btn @click="register">Summit</v-btn>
+                  <row v-if="error">{{error}}</row>
                 </v-layout>
               </v-form>
             </v-container>
@@ -43,14 +44,15 @@
     </v-app>
   </div>
 </template>
-
 <script>
 import AuthServices from "@/services/AuthService"
+
 export default {
   data: () => ({
     email: "",
     pass: "",
     min: 8,
+    error: null,
   }),
 
   computed: {
@@ -102,12 +104,17 @@ export default {
       this.$refs.form.validate();
     },
     async register () {
-      const response = await AuthServices.register({
+      try {
+        await AuthServices.register({
         email: this.email,
         password: this.password
       })
-      console.log(response)
+      }catch (error) {
+        console.log(error)
+        this.error = error.response.data.error
+      }
       },
+      
   },
 };
 </script>

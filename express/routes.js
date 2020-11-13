@@ -5,5 +5,9 @@ module.exports = (app) => {
     app.post("/user", 
         AuthPolicy.register,
         AuthController.register
-        )
+        ),
+        
+    app.post("/ping", (req, res) => {
+        res.send(req.body.ping)
+    })
 }
