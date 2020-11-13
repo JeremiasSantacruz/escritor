@@ -5,7 +5,7 @@
         <v-card hover >
           <v-container>
             <v-card-title>Login</v-card-title>
-            <v-form ref="form" lazy-validation v-model="valid">
+            <v-form ref="form"  v-model="valid">
               <v-text-field
                 v-model="email"
                 :rules="rulesEmail"

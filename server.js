@@ -9,6 +9,7 @@ const port = process.env.PORT || 8080
 const app = express()
 app.use(bodyParser.json());
 app.use(morgan('combined'))
+
 /*
 const connection = mysql.createConnection({
     host: process.env.DB_HOST || '',
@@ -24,7 +25,6 @@ connection.connect(err => {
 
 app.use(express.static(__dirname + "/dist/"))
 
-// const {models} = require('./sequelize')
 require('./express/routes')(app)
 
 
