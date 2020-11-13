@@ -18,13 +18,13 @@ module.exports = {
                     email: email
                 }
             })
-            
+
             if(!user){
                 res.status(403).send({
                     error: 'The login ifnormation was incorrect'
                 })
             }
-
+            
             const isValid = password === user.password
             if (!isValid) {
                 res.status(403).send({
