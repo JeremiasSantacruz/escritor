@@ -20,14 +20,15 @@ module.exports = {
             })
 
             if(!user){
-                res.status(403).send({
-                    error: 'The login ifnormation was incorrect'
+                return res.status(403).send({
+                    error: 'The login iformation was incorrect'
                 })
+                
             }
-            
-            const isValid = password === user.password
-            if (!isValid) {
-                res.status(403).send({
+            const isPasswordValid = await user.comparePassword(password)
+
+            if (!isPasswordValid) {
+                return res.status(403).send({
                     error: 'The login iformation was incorrect'
                 })
             }
@@ -46,12 +47,12 @@ module.exports = {
     },
 
     async register(req, res) {
-        try {           
+        try {       
             const user = await models.User.create(req.body)
             res.send(user.toJSON())
         } catch (error) {
             res.status(400).send({
-                error: 'Email already in use'
+                error: 'Email already in use./'
             })
         }
     }

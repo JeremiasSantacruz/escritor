@@ -1,20 +1,40 @@
+
+const Promise = require('bluebird')
 const Sequelize = require('sequelize')
-// Exportamos la uncion que define el modelo 
-// La funcion recive Sequelize
-module.exports = (sequelize) => {
-    sequelize.define('User', {
-        email: {
-            allowNull: false,
-            primaryKey: true,
-            type: Sequelize.STRING,
-            unique: true,
-        },
-        password: {
-            allowNull: false,
-            type: Sequelize.STRING,
-            /*validate: {
-                is: ^((?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,32})$
-            }*/
-        }
+const bcrypt = Promise.promisifyAll(require('bcrypt-nodejs'))
+
+function hashPassword (user, options) {
+  const SALT_FACTOR = 8
+
+  if (!user.changed('password')) {
+    return
+  }
+
+  return bcrypt
+    .genSaltAsync(SALT_FACTOR)
+    .then(salt => bcrypt.hashAsync(user.password, salt, null))
+    .then(hash => {
+      user.setDataValue('password', hash)
     })
+}
+
+module.exports = (sequelize, DataTypes) => {
+  const User = sequelize.define('User', {
+    email: {
+      type: Sequelize.STRING,
+      unique: true
+    },
+    password: Sequelize.STRING
+  }, {
+    hooks: {
+      beforeSave: hashPassword
+    }
+  })
+
+  User.prototype.comparePassword = function (password) {
+    return bcrypt.compareAsync(password, this.password)
+  }
+
+
+  return User
 }

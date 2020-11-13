@@ -7,7 +7,6 @@ const sequelize = new Sequelize (
     config.db.URL
 )
 
-
 const modelDefiners = [
     require('./models/User.model')
     //Add more models here
@@ -15,13 +14,13 @@ const modelDefiners = [
 
 for(const modelDefiner of modelDefiners) {
     modelDefiner(sequelize)
-}
+} 
 
 // We execute any extra setup after the models are defined, such as adding associations.
 // applyExtraSetup(sequelize);
 
 //testing
-sequelize.sync()
+sequelize.sync({force: true})
 
 // We export the sequelize connection instance to be used around our app.
 module.exports = sequelize;
