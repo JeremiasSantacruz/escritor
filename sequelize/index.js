@@ -21,7 +21,7 @@ for(const modelDefiner of modelDefiners) {
 // applyExtraSetup(sequelize);
 
 //testing
-sequelize.sync({force: true})
+sequelize.sync()
 
 // We export the sequelize connection instance to be used around our app.
 module.exports = sequelize;

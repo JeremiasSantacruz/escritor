@@ -27,6 +27,13 @@
                 <v-icon>mdi-account</v-icon>
               </v-list-item-icon>
               <v-list-item-title >Account</v-list-item-title>
+            </v-list-item> 
+
+            <v-list-item v-if="this.$store.state.userLogIn" to="/books/add">
+              <v-list-item-icon>
+                <v-icon>mdi-account-arrow-right</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title >Log out</v-list-item-title>
             </v-list-item>
 
             <v-list-item v-if="this.$store.state.userLogIn" @click="logOut">
