@@ -1,5 +1,6 @@
 const AuthController = require('./controller/AuhtController')
 const AuthPolicy = require('./policy/AuthPolicy')
+const bookController = require('./controller/BookController.js')
 
 module.exports = (app) => {
     app.post("/user", 
@@ -8,6 +9,14 @@ module.exports = (app) => {
         ),
 
     app.post("/login", 
-    AuthController.login,
+        AuthController.login,
+    ),
+
+    app.get('/books',
+        bookController.index
+        ),
+
+    app.get('/books/:id',
+        bookController.findOne
     )
 }

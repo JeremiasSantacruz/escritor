@@ -8,7 +8,8 @@ const sequelize = new Sequelize (
 )
 
 const modelDefiners = [
-    require('./models/User.model')
+    require('./models/User.model'),
+    require('./models/Book.model')
     //Add more models here
 ]
 

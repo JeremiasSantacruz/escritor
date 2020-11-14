@@ -34,7 +34,8 @@
                 ></v-text-field>
                 <v-layout justify-space-around row>
                   <v-btn @click="register">Summit</v-btn>
-                  <row v-if="error">{{error}}</row>
+                  <row  class="red--text" v-if="error">{{error}}</row>
+                  <row  class="green--text" v-if="succes">{{succes}}</row>
                 </v-layout>
               </v-form>
             </v-container>
@@ -53,6 +54,7 @@ export default {
     pass: "",
     min: 8,
     error: null,
+    succes: null,
   }),
 
   computed: {
@@ -109,6 +111,7 @@ export default {
         email: this.email,
         password: this.password
       })
+      this.succes = 'Sign up succes'
       }catch (error) {
         console.log(error)
         this.error = error.response.data.error

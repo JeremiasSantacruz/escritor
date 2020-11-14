@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+    <h1 v-if="this.$store.state.userLogIn">Bienvenido</h1>
     <v-container align>
       <v-row>
         <v-col
@@ -25,6 +26,7 @@
 <script>
 // @ is an alias to /src
 import Books from "@/components/Books.vue";
+// import bookServices from "@/sevices/BookServices"
 
 export default {
   name: "Home",
@@ -55,5 +57,6 @@ export default {
   components: {
     Books,
   },
+
 };
 </script>

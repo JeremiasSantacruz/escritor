@@ -3,6 +3,6 @@ import axios from 'axios'
 
 export default  () => {
     return axios.create({
-        baseURL: process.env.BASE_URL || 'localhost:8080'
+        baseURL: process.env.BASE_URL || 'http://localhost:8081'
     })
 }

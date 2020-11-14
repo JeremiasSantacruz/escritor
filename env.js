@@ -1,6 +1,6 @@
 require('dotenv').config()
 const env = {
-    port: process.env.PORT || 8081,
+    port: process.env.PORT || 8080,
     db: {
         host: process.env.DB_HOST || 'localhost',
         user: process.env.DB_USER || '',

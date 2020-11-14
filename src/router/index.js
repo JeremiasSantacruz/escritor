@@ -30,18 +30,17 @@ const routes = [
   },
   {
     path: '/books/add',
-    name: 'bookas',
+    name: 'AddBooks',
     component: () => import('@/views/BookRegister.vue')
+  },
+  {
+    path: 'books/:id',
+    name: 'Book',
   },
   {
     path: '/read',
     name: 'read',
     component: () => import('@/views/BooksRead.vue')
-  },
-  {
-    path: '/pingo',
-    name: 'ping',
-    component: () => import('@/views/Ping.vue')
   },
 ]
 

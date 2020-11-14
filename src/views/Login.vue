@@ -1,11 +1,11 @@
 <template>
   <v-app>
     <v-container>
-      <v-layout justify-space-around  column>
-        <v-card hover >
+      <v-layout justify-space-around column>
+        <v-card hover>
           <v-container>
             <v-card-title>Login</v-card-title>
-            <v-form ref="form"  v-model="valid">
+            <v-form ref="form" v-model="valid">
               <v-text-field
                 v-model="email"
                 :rules="rulesEmail"
@@ -26,29 +26,33 @@
               <v-layout justify-space-around>
                 <v-btn @click="validateLogin" :disabled="!valid" align-center
                   >Login</v-btn>
+                  <v-spacer v-if="error"></v-spacer>
+                  <v-card-text class="red--text" v-if="error">{{error}}</v-card-text>
               </v-layout>
             </v-form>
           </v-container>
         </v-card>
-        
+
         <div>
-            <br>
+          <br />
           Need an Account? Register
           <v-btn to="/signup" flat small>Signup </v-btn>
         </div>
-        </v-layout>
+      </v-layout>
     </v-container>
   </v-app>
 </template>
 
 <script>
 import AuthServices from '../services/AuthService'
+
 export default {
   data: () => ({
     email: "",
     password: "",
     valid: true,
     rulepass: [(v) => !!v || "Password is required"],
+    error: '',
   }),
   computed: {
     rulesEmail() {
@@ -60,17 +64,21 @@ export default {
     },
   },
   methods: {
-    validateLogin() {
-      this.$refs.form.validate()
-      if(this.valid){
-        AuthServices.login({
-          email: this.email,
+    async validateLogin() {
+      try {
+        const response = await AuthServices.login({
+            email: this.email,
           password: this.password,
         })
+        this.$store.dispatch('setToken', response.data.token)
+        this.$store.dispatch('setUser', response.data.user)
+        this.$router.push('/')
+      } catch (error) {
+        this.error = error.response.data.error
       }
-      },
-  },
-};
+  }
+}
+}
 </script>
 
 <style>
