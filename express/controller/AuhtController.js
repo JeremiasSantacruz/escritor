@@ -49,6 +49,7 @@ module.exports = {
     async register(req, res) {
         try {       
             const user = await models.User.create(req.body)
+            console.log(user)
             res.send(user)
         } catch (error) {
             res.status(400).send({

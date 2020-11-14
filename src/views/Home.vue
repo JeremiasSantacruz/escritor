@@ -26,37 +26,19 @@
 <script>
 // @ is an alias to /src
 import Books from "@/components/Books.vue";
-// import bookServices from "@/sevices/BookServices"
+import bookServices from "@/services/BookServices"
 
 export default {
   name: "Home",
   data: () => ({
-    books: [
-      { titule: "Madascar", author: "Madrid", desc: "quien sabe", price: 8.90 },
-      { titule: "Madascar3", author: "Madrid", desc: "quien sabe", price: 8.0 },
-      { titule: "Madascar2", author: "Madrid", desc: "quien sabe", price: 8.0 },
-      { titule: "Madascar", author: "Madrid", desc: "quien sabe", price: 8.0 },
-      { titule: "Madascar3", author: "Madrid", desc: "quien sabe", price: 8.0 },
-      { titule: "Madascar2", author: "Madrid", desc: "quien sabe", price: 8.0 },
-      {
-        titule: "Madascsdar",
-        author: "Madrid",
-        desc: "quien sabe",
-        price: 8.0,
-      },
-      { titule: "Madascar3", author: "Madrid", desc: "quien sabe", price: 8.0 },
-      { titule: "Madascar2", author: "Madrid", desc: "quien sabe", price: 8.0 },
-      { titule: "Madascar", author: "Madrid", desc: "quien sabe", price: 8.0 },
-      { titule: "Madascar3", author: "Madrid", desc: "quien sabe", price: 8.0 },
-      { titule: "Madascar2", author: "Madrid", desc: "quien sabe", price: 8.0 },
-      { titule: "Madascar", author: "Madrid", desc: "quien sabe", price: 8.05 },
-      { titule: "Madascar3", author: "Madrid", desc: "quien sabe", price: 8.0 },
-      { titule: "Madascar2", author: "Madrid", desc: "quien sabe", price: 8.0 },
-    ],
-  }),
+    books: null,
+    }),
   components: {
     Books,
   },
+  async mounted () {
+    this.books = bookServices.index()
+  }
 
 };
 </script>

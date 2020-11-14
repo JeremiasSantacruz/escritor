@@ -4,7 +4,7 @@
             height="100px"
             :src="require('../assets/books.png')"
           >
-    <v-card-title class="white--text" >{{ titule }}</v-card-title>
+    <v-card-title class="white--text" >{{ title }}</v-card-title>
     <v-card-subtitle class="white--text">{{ author }}</v-card-subtitle>
     </v-img>
     <v-card-actions>
@@ -40,7 +40,7 @@
 export default {
   data: () => ({ show: false }),
   props: {
-    titule: String,
+    title: String,
     author: String,
     desc: String,
     price: Number,
