@@ -25,7 +25,6 @@
                 v-model="book.description"
                 prepend-icon="mdi-format-align-left"
                 :rules="[(v) => !!v || 'No puede estar vacia']"
-                
               ></v-textarea>
               <v-text-field
                 type="number"
@@ -88,10 +87,14 @@ export default {
     },
     async register() {
       try {
-        const book = (await BookServices.create(this.book)).data
-        setTimeout(() => this.$router.push({name: 'Book', params: {book_id: book.id}}))
+        if (this.$store.user.role === "Admin") {
+          const book = (await BookServices.create(this.book)).data;
+          setTimeout(() =>
+            this.$router.push({ name: "Book", params: { book_id: book.id } })
+          );
+        }
       } catch (error) {
-        this.error = error.response.data.error
+        this.error = error.response.data.error;
       }
     },
   },
