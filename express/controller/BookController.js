@@ -1,7 +1,5 @@
 const {models} = require('../../sequelize')
-const jwt = require('jsonwebtoken')
 const config = require('../../env')
-
 
 module.exports = {
     async create(req, res){
@@ -19,10 +17,10 @@ module.exports = {
     
     async index (req, res) {
         try {
-            const book = await models.Book.findAll({
+            const books = await models.Book.findAll({
                 limit: 20
             })
-            res.send(book)
+            res.send(books)
          } catch (error) {
             res.status(500).send({
                 error: 'Something wrong'
@@ -30,18 +28,15 @@ module.exports = {
         }
     },
 
-    async findOne(req, res) {
-        try {
-            const ID = req.Id       
-            const book = await models.Book.find({
-                where: {id : ID}
-            })
-            if(book){
+    async findBook(req, res) {
+        try {      
+            const book = await models.Book.findByPk(req.params.id)
+            if(!book){
                 return res.status(404).send({
                     error: 'Book not found'
                 })
             }
-            res.send({book: book.toJSON()})
+            res.send(book)
         } catch (error) {
             res.status(400).send({
                 error: 'Something Wrong'
@@ -49,22 +44,4 @@ module.exports = {
         }
     },
 
-    async delete(req, res){
-        try {
-            const ID = req.Id       
-            const book = await models.Book.find({
-                where: {id : ID}
-            })
-            if(book){
-                return res.status(404).send({
-                    error: 'Book not found'
-                })
-            }
-            book.destroy()
-        } catch (error) {
-            res.status(400).send({
-                error: 'Something Wrong'
-            })
-        }
-    }
 }

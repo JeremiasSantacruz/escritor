@@ -18,13 +18,18 @@ function hashPassword (user, options) {
     })
 }
 
-module.exports = (sequelize, DataTypes) => {
+module.exports = (sequelize) => {
   const User = sequelize.define('User', {
     email: {
       type: Sequelize.STRING,
       unique: true
     },
     password: Sequelize.STRING,
+    role: {
+      type: Sequelize.STRING,
+      defaultValue:"user",
+    },
+    secret: Sequelize.STRING,
   }, {
     hooks: {
       beforeSave: hashPassword

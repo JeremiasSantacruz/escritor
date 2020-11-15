@@ -6,7 +6,8 @@ module.exports = {
             email: Joi.string().email(),
             password: Joi.string().pattern(
                 new RegExp('^((?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,32})$')
-            )
+            ),
+            secret: Joi.string()
         })
 
         const {error, value} = schema.validate(req.body)
@@ -15,7 +16,7 @@ module.exports = {
             switch (error.details[0].context.key){
                 case "email":
                     res.status(400).send({
-                        error: `You must provide a valid email addres`
+                        error: `You must provide a valid email addres.`
                     })
                     break
                 case "password":
@@ -25,9 +26,14 @@ module.exports = {
                         <br> 2. Have at least one upper case, lower case, digit and special char`
                     })
                     break
+                case "secret":
+                    res.status(400).send({
+                        error: `You must provide a secret.`
+                    })
+                    break
                 default:
                     res.status(400).send({
-                        error: `Invalid registrer information`
+                        error: `Invalid register information`
                     })
                     break
             }            
