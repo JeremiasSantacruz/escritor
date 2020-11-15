@@ -34,8 +34,9 @@ const routes = [
     component: () => import('@/views/BookRegister.vue')
   },
   {
-    path: 'books/:id',
+    path: '/books/:book_id',
     name: 'Book',
+    component: () => import('@/views/Book'),
   },
   {
     path: '/read',

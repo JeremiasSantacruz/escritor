@@ -8,7 +8,8 @@
     <v-card-subtitle class="white--text">{{ author }}</v-card-subtitle>
     </v-img>
     <v-card-actions>
-      <v-btn color="orange-text lighten-2" to='/read'> Description </v-btn>
+      <v-btn color="orange--text lighten-2" text 
+      :to="{name: 'Book', params: {book_id: this.id}}" > Description </v-btn>
       <v-spacer></v-spacer>
 
       <v-btn icon @click="show = !show">
@@ -20,13 +21,13 @@
       <div v-show="show">
         <v-divider></v-divider>
         <v-card-text>
-          {{ desc }}
+          {{ description }}
         </v-card-text>
       </div>
     </v-expand-transition>
 
     <v-card-actions>
-        <v-card-text>Buy</v-card-text>
+        <v-card-text>Comprar</v-card-text>
         <v-spacer></v-spacer>
       <v-btn outlined rounded small color="sucess">
           <v-icon>mdi-cart</v-icon>
@@ -40,11 +41,13 @@
 export default {
   data: () => ({ show: false }),
   props: {
+    id: Number  ,
     title: String,
     author: String,
-    desc: String,
+    description: String,
     price: Number,
   },
+
 };
 </script>
 

@@ -6,5 +6,8 @@ export default {
     },
     create (book){
         return api().post('/books/add', book)
+    },
+    findOne (id){
+        return api().get(`books/${id}`, )
     }
 }

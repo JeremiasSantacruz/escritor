@@ -1,6 +1,5 @@
 <template>
   <div class="home">
-    <h1 v-if="this.$store.state.userLogIn">Bienvenido</h1>
     <v-container align>
       <v-row>
         <v-col
@@ -10,10 +9,12 @@
           v-for="(book, index) in books"
           :key="index"
         > 
-          <Books
-            v-bind:titule="book.titule"
+        <br> {{book.id}}
+          <BooksCard
+            v-bind:id="book.id"
+            v-bind:title="book.title"
             v-bind:author="book.author"
-            v-bind:desc="book.desc"
+            v-bind:description="book.description"
             v-bind:price="book.price"
           />
         </v-col>
@@ -25,7 +26,7 @@
 
 <script>
 // @ is an alias to /src
-import Books from "@/components/Books.vue";
+import BooksCard from "@/components/BooksCard.vue";
 import bookServices from "@/services/BookServices"
 
 export default {
@@ -34,10 +35,11 @@ export default {
     books: null,
     }),
   components: {
-    Books,
+    BooksCard,
   },
   async mounted () {
-    this.books = bookServices.index()
+    this.books =  (await bookServices.index()).data
+
   }
 
 };

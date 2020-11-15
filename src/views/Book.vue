@@ -1,26 +1,30 @@
 <template>
   <div>
-    <v-container>
-      <h1 class="text-center">{{title}}</h1>
-      <p clas="subtitle-1"> {{author}}</p>
-      <p>{{description}}</p>
-      <v-layout center >
-        <p>Buy</p>
-        <v-btn color="green" >
-        <v-icon dark>
-          mdi-cart
-        </v-icon>
-        </v-btn>
-    <v-container> 
+    <book
+            v-bind:title="bookFind.title"
+            v-bind:author="bookFind.author"
+            v-bind:description="bookFind.description"
+            v-bind:price="bookFind.price"
+          ></book>
   </div>
 </template>
 
 <script>
+import BookServices from '@/services/BookServices'
+import book from '@/components/Book'
 export default {
  
   data: () => ({
+    bookFind: null,
 
-    })
+    }),
+  components: {
+    book,
+  },
+  async mounted() {
+    const id = this.$route.params.book_id
+    this.bookFind = (await BookServices.findOne(id)).data
+  },
 }
 </script>
 
