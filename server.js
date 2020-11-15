@@ -1,6 +1,5 @@
 const express = require('express')
 const bodyParser = require('body-parser')
-const morgan = require('morgan')
 const cors = require('cors')
 
 require('dotenv').config()
@@ -9,7 +8,6 @@ console.log(port)
 
 const app = express()
 app.use(bodyParser.json());
-app.use(morgan('combined'))
 app.use(cors())
 
 
