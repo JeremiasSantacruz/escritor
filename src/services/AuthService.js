@@ -6,5 +6,11 @@ export default {
     },
     login (credentials){
         return api().post('/login', credentials)
+    },
+    adminUp (credentials){
+        return api().post('/admin', credentials)
+    },
+    recovery (credentials){
+        return api().post('/user/recovery', credentials)
     }
 }

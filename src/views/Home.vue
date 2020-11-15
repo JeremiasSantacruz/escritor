@@ -9,7 +9,6 @@
           v-for="(book, index) in books"
           :key="index"
         > 
-        <br> {{book.id}}
           <BooksCard
             v-bind:id="book.id"
             v-bind:title="book.title"

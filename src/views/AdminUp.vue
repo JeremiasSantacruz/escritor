@@ -4,7 +4,7 @@
       <v-layout justify-space-around column>
         <v-card hover>
           <v-container>
-            <v-card-title>Login</v-card-title>
+            <v-card-title>Otorgar permisos.</v-card-title>
             <v-form ref="form" v-model="valid">
               <v-text-field
                 v-model="email"
@@ -16,47 +16,44 @@
               ></v-text-field>
 
               <v-text-field
-                v-model="password"
-                label="Password"
+                v-model="secret"
+                label="Secreto"
                 :rules="rulepass"
-                prepend-icon="mdi-lock"
+                prepend-icon="mdi-account-key"
                 type="password"
                 required
               ></v-text-field>
+
               <v-layout justify-space-around>
+                
                 <v-btn @click="validateLogin" :disabled="!valid" align-center
-                  >Login</v-btn>
-                  <v-spacer v-if="error"></v-spacer>
-                  <v-card-text class="red--text" v-if="error">{{error}}</v-card-text>
+                  >Dar administrador</v-btn
+                >
+                <v-spacer v-if="error"></v-spacer>
+                <v-card-text class="red--text" v-if="error">{{
+                  error
+                }}</v-card-text>
+                <v-card-text class="green--text" v-if="sucess">Permiso administrador otorgado</v-card-text>
+
               </v-layout>
             </v-form>
           </v-container>
         </v-card>
-
-        <div>
-          <br />
-          Necesitas una cuenta?
-          <v-btn to="/signup" flat text small>Registarse </v-btn>
-          <v-spacer/>
-          <br> No recuerdas la contraseña? 
-          <v-btn to="/user/recovery" flat text small>Recuperar</v-btn>
-        </div>
-        
       </v-layout>
     </v-container>
   </v-app>
 </template>
 
 <script>
-import AuthServices from '../services/AuthService'
+import AuthServices from "../services/AuthService";
 
 export default {
   data: () => ({
     email: "",
-    password: "",
+    secret: "",
     valid: true,
-    rulepass: [(v) => !!v || "Password is required"],
-    error: '',
+    error: "",
+    sucess: false,
   }),
   computed: {
     rulesEmail() {
@@ -70,19 +67,18 @@ export default {
   methods: {
     async validateLogin() {
       try {
-        const response = await AuthServices.login({
-            email: this.email,
-          password: this.password,
-        })
-        this.$store.dispatch('setToken', response.data.token)
-        this.$store.dispatch('setUser', response.data.user)
+          await AuthServices.adminUp({
+          email: this.email,
+          secret: this.secret,
+        });
+        this.sucess = true,
         setTimeout( () => this.$router.push("/"), 700)
       } catch (error) {
-        this.error = error.response.data.error
+        this.error = error.response.data.error;
       }
-  }
-}
-}
+    },
+  },
+};
 </script>
 
 <style>

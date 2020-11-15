@@ -43,6 +43,16 @@ const routes = [
     name: 'read',
     component: () => import('@/views/BooksRead.vue')
   },
+  {
+    path: '/user/adminup',
+    name: 'Adminup',
+    component: () => import('@/views/AdminUp'),
+  },
+  {
+    path: '/user/recovery',
+    name: 'Recovery',
+    component: () => import('@/views/Recovery.vue'),
+  },
 ]
 
 const router = new VueRouter({

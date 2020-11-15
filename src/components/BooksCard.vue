@@ -9,7 +9,7 @@
     </v-img>
     <v-card-actions>
       <v-btn color="orange--text lighten-2" text 
-      :to="{name: 'Book', params: {book_id: this.id}}" > Description </v-btn>
+    :to="{name: 'Book', params: {book_id: this.id}}" > Description </v-btn>
       <v-spacer></v-spacer>
 
       <v-btn icon @click="show = !show">

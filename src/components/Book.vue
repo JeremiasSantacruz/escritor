@@ -6,7 +6,7 @@
       <v-layout  >
         <p>   Comprar</p>
         <v-spacer/>
-        <v-btn color="green" >
+        <v-btn color="green" @click="compra" >
         <v-icon dark>
           mdi-cart
         </v-icon>
@@ -23,6 +23,16 @@ export default {
         genre: null,
         description: String,
         price: null,
+    },
+    methods: {
+      compra(){
+        // Implementar llamada  a compra
+        if(this.$store.userLogIn){
+          this.router.push('/home') //implementar pdf
+        }else {
+          this.router.push('/login')
+        }
+      }
     }
 
 }

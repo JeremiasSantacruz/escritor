@@ -5,7 +5,7 @@
         <v-layout justify-space-around column>
           <v-card hover d-flex>
             <v-container>
-              <v-card-title>Registrarse</v-card-title>
+              <v-card-title>Recuperar contraseña</v-card-title>
               <v-form ref="form" lazy-validation>
                 <v-text-field
                   v-model="email"
@@ -27,7 +27,7 @@
                 <v-text-field
                   v-model="passwordCheck"
                   :rules="rulesPassword"
-                  label="Contraseña."
+                  label="Contraseña"
                   prepend-icon="mdi-lock"
                   type="password"
                   required
@@ -35,12 +35,13 @@
                 <v-text-field
                   v-model="secret"
                   :rules="rulesEmail"
-                  label="Secreto (Se usa para recuperar contraseña)"
+                  label="Secreto"
                   prepend-icon="mdi-account-key"
                   required
                 ></v-text-field>
+
                 <v-layout justify-space-around row>
-                  <v-btn @click="register">Enviar</v-btn>
+                  <v-btn @click="register">Recuperar</v-btn>
                   <row  class="red--text" v-if="error">{{error}}</row>
                   <row  class="green--text" v-if="succes">{{succes}}</row>
                 </v-layout>
@@ -59,8 +60,8 @@ export default {
   data: () => ({
     email: "",
     pass: "",
-    secret: "",
     min: 8,
+    secret: "",
     error: null,
     succes: null,
   }),
@@ -120,7 +121,7 @@ export default {
         password: this.password,
         secret: this.secret,
       })
-      this.succes = 'Registro exitoso!'
+      this.succes = 'Contraseña cambiada'
       setTimeout( () => this.$router.push("/"), 700)
       }catch (error) {
         console.log(error)

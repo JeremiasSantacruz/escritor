@@ -88,8 +88,8 @@ export default {
     },
     async register() {
       try {
-        await BookServices.create(this.book);
-
+        const book = (await BookServices.create(this.book)).data
+        setTimeout(() => this.$router.push({name: 'Book', params: {book_id: book.id}}))
       } catch (error) {
         this.error = error.response.data.error
       }
