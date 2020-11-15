@@ -28,7 +28,7 @@
               <v-list-item-title >Cuenta</v-list-item-title>
             </v-list-item> 
 
-            <v-list-item v-if="this.$store.state.userLogIn" to="/books/add">
+            <v-list-item v-if="isAdmin" to="/books/add">
               <v-list-item-icon>
                 <v-icon>mdi-book-open-variant</v-icon>
               </v-list-item-icon>
@@ -112,7 +112,19 @@ export default {
       this.$store.dispatch('setUser', null)
       this.$router.push({name:'Home'})
     }
-  }
+  },
+  computed: {
+    isAdmin (){
+      if(this.$store.state.userLogIn){
+        if(this.$store.state.user.role === 'Admin'){
+          return true
+        }
+      }
+      return false
+      
+    }
+  },
+
 };
 </script>
 

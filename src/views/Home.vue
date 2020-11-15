@@ -9,6 +9,7 @@
           v-for="(book, index) in books"
           :key="index"
         > 
+          <h1 v-if="error">No se pudo obtener los libros.</h1>
           <BooksCard
             v-bind:id="book.id"
             v-bind:title="book.title"
@@ -32,12 +33,19 @@ export default {
   name: "Home",
   data: () => ({
     books: null,
+    error: false,
     }),
   components: {
     BooksCard,
   },
   async mounted () {
-    this.books =  (await bookServices.index()).data
+    try {
+      this.books =  (await bookServices.index()).data
+    } catch (error) {
+      this.error = true
+      
+    }
+    
 
   }
 

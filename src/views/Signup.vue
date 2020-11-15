@@ -25,20 +25,21 @@
                 ></v-text-field>
 
                 <v-text-field
-                  v-model="passwordCheck"
                   :rules="rulesPassword"
                   label="Contraseña."
                   prepend-icon="mdi-lock"
                   type="password"
                   required
                 ></v-text-field>
+                
                 <v-text-field
                   v-model="secret"
-                  :rules="rulesEmail"
                   label="Secreto (Se usa para recuperar contraseña)"
                   prepend-icon="mdi-account-key"
+                  type="password"
                   required
                 ></v-text-field>
+
                 <v-layout justify-space-around row>
                   <v-btn @click="register">Enviar</v-btn>
                   <row  class="red--text" v-if="error">{{error}}</row>
@@ -58,7 +59,7 @@ import AuthServices from "@/services/AuthService"
 export default {
   data: () => ({
     email: "",
-    pass: "",
+    password: "",
     secret: "",
     min: 8,
     error: null,

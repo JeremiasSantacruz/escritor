@@ -28,9 +28,9 @@ export default {
       compra(){
         // Implementar llamada  a compra
         if(this.$store.userLogIn){
-          this.router.push('/home') //implementar pdf
+          this.$router.push('/home') //implementar pdf
         }else {
-          this.router.push('/login')
+          this.$router.push('/login')
         }
       }
     }

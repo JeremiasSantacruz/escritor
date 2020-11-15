@@ -36,10 +36,10 @@
         <div>
           <br />
           Necesitas una cuenta?
-          <v-btn to="/signup" flat text small>Registarse </v-btn>
+          <v-btn to="/signup"  text small>Registarse </v-btn>
           <v-spacer/>
           <br> No recuerdas la contraseña? 
-          <v-btn to="/user/recovery" flat text small>Recuperar</v-btn>
+          <v-btn to="/user/recovery"  text small>Recuperar</v-btn>
         </div>
         
       </v-layout>
